@@ -1,31 +1,21 @@
 package main;
 
-import java.awt.*;
+
 import java.awt.image.BufferedImage;
 
+public class Knight extends Piece{
 
+    public Knight(Board board,int column,int rows,boolean isWhite) {
 
-
-///Naprawic knighta 
-
-public class Knight extends Piece {
-
-    public Knight(int column, int row, boolean isWhite, Board board) {
         super(board);
+        this.column=column;
+        this.rows=rows;
+        this.xPos=column+board.tileSize;
+        this.yPos=rows+board.tileSize;
+        this.isWhite=false;
+        this.name="Knight";
+        this.sprite=sheet.getSubimage(3*SheetScale,isWhite?0:SheetScale,SheetScale,SheetScale).getScaledInstance(board.tileSize,board.tileSize, BufferedImage.SCALE_SMOOTH);
 
-        this.column = column;
-        this.row = row;
-        this.isWhite = isWhite;
-        this.name = "Knight";
-        this.value = 3;
-
-        int tileSize = board.tileSize;
-        int spriteY = isWhite ? 0 : tileSize;
-        BufferedImage unscaledSprite = sheet.getSubimage(tileSize * 3, spriteY, tileSize, tileSize); //
-        int sheetScale=sheet.getWidth()/6;
-
-        // Tworzenie przeskalowanej figury
-        this.sprite = sheet.getScaledInstance(3*sheetScale,0,isWhite?0:sheetScale);
 
     }
 }

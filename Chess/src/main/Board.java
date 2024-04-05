@@ -12,12 +12,48 @@ public class Board extends JPanel {
 
     public Board() {
         this.setPreferredSize(new Dimension(columns * tileSize, rows * tileSize));
-        addPieces(); // Dodanie pionków na planszę
+        addPiece();
     }
+public void addPiece(){
+    pieceList.add(new Knight(this,0,-85,false));
+    pieceList.add(new Knight(this,425,-85,false));
+    pieceList.add(new Pawn(this,-85,0,false));
+    pieceList.add(new Pawn(this,0,0,false));
+    pieceList.add(new Pawn(this,85,0,false));
+    pieceList.add(new Pawn(this,170,0,false));
+    pieceList.add(new Pawn(this,255,0,false));
+    pieceList.add(new Pawn(this,340,0,false));
+    pieceList.add(new Pawn(this,425,0,false));
+    pieceList.add(new Pawn(this,510,0,false));
+    pieceList.add(new Rook(this,510,-85,false));
+    pieceList.add(new Rook(this,-85,-85,false));
+    pieceList.add(new Bishop(this,85,-85,false));
+    pieceList.add(new Bishop(this,340,-85,false));
+    pieceList.add(new Queen(this,170,-85,false));
+    pieceList.add(new King(this,255,-85,false));
 
-    public void addPieces() {
-        pieceList.add(new Knight(2, 0, false, this));
-    }
+    pieceList.add(new Knight(this,0,510,true));
+    pieceList.add(new Knight(this,425,510,true));
+    pieceList.add(new Pawn(this,-85,425,true));
+    pieceList.add(new Pawn(this,0,425,true));
+    pieceList.add(new Pawn(this,85,425,true));
+    pieceList.add(new Pawn(this,170,425,true));
+    pieceList.add(new Pawn(this,255,425,true));
+    pieceList.add(new Pawn(this,340,425,true));
+    pieceList.add(new Pawn(this,425,425,true));
+    pieceList.add(new Pawn(this,510,425,true));
+    pieceList.add(new Rook(this,510,510,true));
+    pieceList.add(new Rook(this,-85,510,true));
+    pieceList.add(new Bishop(this,85,510,true));
+    pieceList.add(new Bishop(this,340,510,true));
+    pieceList.add(new Queen(this,170,510,true));
+    pieceList.add(new King(this,255,510,true));
+
+
+
+
+}
+
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -31,7 +67,7 @@ public class Board extends JPanel {
             }
         }
         for (Piece piece : pieceList) {
-            piece.paint(g2d); // Rysowanie pionków
+            piece.paint(g2d);
         }
     }
 }
