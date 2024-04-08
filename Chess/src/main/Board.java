@@ -9,10 +9,51 @@ public class Board extends JPanel {
     int columns = 8;
     ArrayList<Piece> pieceList = new ArrayList<>();
     public int tileSize = 85;
-
+Input input= new Input(this);
     public Board() {
         this.setPreferredSize(new Dimension(columns * tileSize, rows * tileSize));
         addPiece();
+        this.addMouseListener(input);
+        this.addMouseMotionListener(input);
+    }
+    public Piece selectPiece;
+
+    public void makeMove(Move move){
+        
+        capture(move);
+    }
+    public void capture(Move move){
+        pieceList.remove(move.capture);
+    }
+    public boolean isValidMove(Move move){
+        if(sameTeam(move.piece,move.capture)){
+            return false;
+        }
+        return true;
+
+    }
+
+    public boolean sameTeam(Piece piece1,Piece piece2){
+        if( piece1==null|| piece2 ==null){
+            return false;
+
+        }
+        return piece1.isWhite== piece2.isWhite;
+    }
+
+
+    public Piece capturePiece(int column,int row){
+        for (Piece piece:pieceList){
+           if(piece.column==column&&piece.rows==row){
+            return piece;
+           }
+
+
+
+
+
+        }
+        return null;
     }
 public void addPiece(){
     pieceList.add(new Knight(this,0,-85,false));
