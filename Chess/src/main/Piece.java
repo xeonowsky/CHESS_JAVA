@@ -9,7 +9,9 @@ import java.io.IOException;
 public class Piece {
 
     public int column, rows;
-    public int xPos, yPos;
+    public int xPos=0;
+    public int yPos=0;
+
     public boolean isWhite;
     public String name;
     public int value;
