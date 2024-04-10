@@ -1,16 +1,19 @@
 package main;
 
 import javax.imageio.ImageIO;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 public class Piece {
 
     public int column, rows;
-    public int xPos=0;
-    public int yPos=0;
+    public int xPos;
+    public int yPos;
 
     public boolean isWhite;
     public String name;

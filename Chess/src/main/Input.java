@@ -20,9 +20,11 @@ Board board;
     }
 
     public void mouseReleased(MouseEvent mouseEvent) {
+        int column = mouseEvent.getX() / board.tileSize;
+        int row = mouseEvent.getY() / board.tileSize;
+
         if (board.selectPiece != null) {
-            int column = mouseEvent.getX() / board.tileSize;
-            int row = mouseEvent.getY() / board.tileSize;
+
             Move move = new Move(board, board.selectPiece, row, column);
             if (board.isValidMove(move)) {
                 board.makeMove(move);

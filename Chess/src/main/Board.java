@@ -19,11 +19,15 @@ Input input= new Input(this);
     public Piece selectPiece;
 
     public void makeMove(Move move){
-        
+        move.piece.column=move.newColumn;
+        move.piece.rows=move.newRow;
+        move.piece.xPos=move.newRow*tileSize;
+        move.piece.yPos=move.newColumn*tileSize;
         capture(move);
     }
     public void capture(Move move){
         pieceList.remove(move.capture);
+
     }
     public boolean isValidMove(Move move){
         if(sameTeam(move.piece,move.capture)){
@@ -34,11 +38,11 @@ Input input= new Input(this);
     }
 
     public boolean sameTeam(Piece piece1,Piece piece2){
-        if( piece1==null|| piece2 ==null){
+        if( piece1==null || piece2 ==null){
             return false;
 
-        }
-        return piece1.isWhite== piece2.isWhite;
+        }return piece1.isWhite== piece2.isWhite;
+
     }
 
 
@@ -47,10 +51,6 @@ Input input= new Input(this);
            if(piece.column==column&&piece.rows==row){
             return piece;
            }
-
-
-
-
 
         }
         return null;
