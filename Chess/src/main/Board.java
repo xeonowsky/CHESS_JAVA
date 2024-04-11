@@ -9,6 +9,7 @@ public class Board extends JPanel {
     int columns = 8;
     ArrayList<Piece> pieceList = new ArrayList<>();
     public int tileSize = 85;
+
 Input input= new Input(this);
     public Board() {
         this.setPreferredSize(new Dimension(columns * tileSize, rows * tileSize));
@@ -19,21 +20,24 @@ Input input= new Input(this);
     public Piece selectPiece;
 
     public void makeMove(Move move){
-        move.piece.column=move.newColumn;
-        move.piece.rows=move.newRow;
-        move.piece.xPos=move.newRow*tileSize;
-        move.piece.yPos=move.newColumn*tileSize;
-        capture(move);
+       move.piece.column=move.newColumn;
+       move.piece.rows=move.newRow;
+       move.piece.xPos=move.newColumn*tileSize;
+       move.piece.yPos=move.newRow*tileSize;
+       capture(move);
     }
     public void capture(Move move){
-        pieceList.remove(move.capture);
+
+    pieceList.remove(move.capture);
 
     }
     public boolean isValidMove(Move move){
+
+
         if(sameTeam(move.piece,move.capture)){
             return false;
         }
-        return true;
+       return true;
 
     }
 
@@ -41,20 +45,23 @@ Input input= new Input(this);
         if( piece1==null || piece2 ==null){
             return false;
 
-        }return piece1.isWhite== piece2.isWhite;
-
-    }
-
-
-    public Piece capturePiece(int column,int row){
-        for (Piece piece:pieceList){
-           if(piece.column==column&&piece.rows==row){
-            return piece;
-           }
-
         }
-        return null;
+        return piece1.isWhite== piece2.isWhite;
+
     }
+
+        public Piece getPiece(int column,int rows){
+        for (Piece piece:pieceList){
+            if(piece.column==column&&piece.rows==rows){
+                return piece;
+            }
+        }
+
+        return null;
+        }
+
+
+
 public void addPiece(){
     pieceList.add(new Knight(this,1,0,false));
     pieceList.add(new Knight(this,6,0,false));
