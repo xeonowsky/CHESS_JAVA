@@ -35,18 +35,61 @@ public class Piece {
     public Piece(Board board) {
         this.board = board;}
 
+    public int getColumn() {
+        return column;
+    }
 
+    public void setColumn(int column) {
+        this.column = column;
+    }
 
+    public int getRows() {
+        return rows;
+    }
 
+    public void setRows(int rows) {
+        this.rows = rows;
+    }
 
+    public int getxPos() {
+        return xPos;
+    }
 
+    public void setxPos(int xPos) {
+        this.xPos = xPos;
+    }
 
+    public int getyPos() {
+        return yPos;
+    }
 
+    public void setyPos(int yPos) {
+        this.yPos = yPos;
+    }
 
+    public boolean isWhite() {
+        return isWhite;
+    }
 
+    public void setWhite(boolean white) {
+        isWhite = white;
+    }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
 
     public void paint(Graphics2D g2d) {
 

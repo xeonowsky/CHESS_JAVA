@@ -10,39 +10,45 @@ public class Board extends JPanel {
     ArrayList<Piece> pieceList = new ArrayList<>();
     public int tileSize = 85;
 
-Input input= new Input(this);
+    Input input = new Input(this);
+
     public Board() {
         this.setPreferredSize(new Dimension(columns * tileSize, rows * tileSize));
         addPiece();
         this.addMouseListener(input);
         this.addMouseMotionListener(input);
     }
+
     public Piece selectPiece;
 
-    public void makeMove(Move move){
-       move.piece.column=move.newColumn;
-       move.piece.rows=move.newRow;
-       move.piece.xPos=move.newColumn*tileSize;
-       move.piece.yPos=move.newRow*tileSize;
-       capture(move);
+    public void makeMove(Move move) {
+        move.piece.column = move.newColumn;
+        move.piece.rows = move.newRow;
+        move.piece.xPos = move.newColumn * tileSize;
+        move.piece.yPos = move.newRow * tileSize;
+        capture(move);
     }
-    public void capture(Move move){
 
-    pieceList.remove(move.capture);
+    public void capture(Move move) {
+
+
+            pieceList.remove(move.capture);
+
 
     }
-    public boolean isValidMove(Move move){
+
+    public boolean isValidMove(Move move) {
 
 
-        if(sameTeam(move.piece,move.capture)){
+        if (sameTeam(move.piece, move.capture)) {
             return false;
         }
-       return true;
+        return true;
 
     }
 
-    public boolean sameTeam(Piece piece1,Piece piece2){
-        if( piece1==null || piece2 ==null){
+    public boolean sameTeam(Piece piece1, Piece piece2) {
+        if ((piece1 == null) || (piece2 == null)) {
             return false;
 
         }
@@ -50,14 +56,19 @@ Input input= new Input(this);
 
     }
 
+
+
+
         public Piece getPiece(int column,int rows){
         for (Piece piece:pieceList){
             if(piece.column==column&&piece.rows==rows){
                 return piece;
             }
-        }
 
+        }
         return null;
+
+
         }
 
 

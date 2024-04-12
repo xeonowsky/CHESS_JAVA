@@ -43,6 +43,10 @@ public class Input extends MouseAdapter {
             Move move=new Move(board,board.selectPiece,col,row);
             if(board.isValidMove(move)){
                 board.makeMove(move);
+
+
+
+
             }
             else {
                 board.selectPiece.xPos=board.selectPiece.column* board.tileSize;
