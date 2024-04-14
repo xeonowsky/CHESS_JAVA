@@ -40,10 +40,7 @@ public class Board extends JPanel {
     public boolean isValidMove(Move move) {
 
 
-        if (sameTeam(move.piece, move.capture)) {
-            return false;
-        }
-        return true;
+        return !sameTeam(move.piece, move.capture);
 
     }
 
@@ -52,7 +49,7 @@ public class Board extends JPanel {
             return false;
 
         }
-        return piece1.isWhite== piece2.isWhite;
+        return !(piece1.isWhite== piece2.isWhite);
 
     }
 
