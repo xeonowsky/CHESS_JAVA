@@ -49,7 +49,8 @@ public class Board extends JPanel {
             return false;
 
         }
-        return !(piece1.isWhite== piece2.isWhite);
+
+        return !(piece1.isWhite()== piece2.isWhite());
 
     }
 
