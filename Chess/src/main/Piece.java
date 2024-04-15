@@ -35,6 +35,7 @@ public class Piece {
     public Piece(Board board) {
         this.board = board;}
 
+
     public int getColumn() {
         return column;
     }
@@ -53,6 +54,10 @@ public class Piece {
 
     public int getxPos() {
         return xPos;
+    }
+    public void checkPosition(Piece piece){
+        System.out.println("Column:"+piece.getColumn()+"Row:"+piece.getRows());
+
     }
 
     public void setxPos(int xPos) {

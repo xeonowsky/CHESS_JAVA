@@ -11,7 +11,7 @@ public class Rook extends Piece{
         this.rows=rows;
         this.xPos=column*board.tileSize;
         this.yPos=rows*board.tileSize;
-        this.isWhite=false;
+        this.isWhite=isWhite;
         this.name="Rook";
         this.sprite=sheet.getSubimage(4*SheetScale,isWhite?0:SheetScale,SheetScale,SheetScale).getScaledInstance(board.tileSize,board.tileSize, BufferedImage.SCALE_SMOOTH);
 

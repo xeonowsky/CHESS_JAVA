@@ -27,6 +27,7 @@ public class Board extends JPanel {
         move.piece.xPos = move.newColumn * tileSize;
         move.piece.yPos = move.newRow * tileSize;
         capture(move);
+
     }
 
     public void capture(Move move) {
@@ -38,20 +39,23 @@ public class Board extends JPanel {
     }
 
     public boolean isValidMove(Move move) {
-
-
         return !sameTeam(move.piece, move.capture);
-
     }
 
-    public boolean sameTeam(Piece piece1, Piece piece2) {
-        if ((piece1 == null) || (piece2 == null)) {
-            return false;
 
+    public boolean sameTeam(Piece piece1, Piece piece2) {
+
+
+
+
+
+        if (piece1 == null || piece2 == null) {
+            return false;
         }
 
-        return !(piece1.isWhite()== piece2.isWhite());
 
+
+        return piece1.isWhite()== piece2.isWhite();
     }
 
 

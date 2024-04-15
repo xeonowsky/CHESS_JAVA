@@ -11,7 +11,7 @@ public class Pawn extends Piece{
         this.rows=rows;
         this.xPos=column*board.tileSize;
         this.yPos=rows*board.tileSize;
-        this.isWhite=false;
+        this.isWhite=isWhite;
         this.name="Pawn";
         this.sprite=sheet.getSubimage(5*SheetScale,isWhite?0:SheetScale,SheetScale,SheetScale).getScaledInstance(board.tileSize,board.tileSize, BufferedImage.SCALE_SMOOTH);
 
