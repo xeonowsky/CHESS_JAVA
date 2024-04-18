@@ -18,4 +18,9 @@ public class Knight extends Piece{
 
 
     }
+
+    @Override
+    public boolean isValidMovmentOfPiece(int column, int rows) {
+        return Math.abs(column-this.column)*Math.abs(rows-this.rows)==2;
+    }
 }

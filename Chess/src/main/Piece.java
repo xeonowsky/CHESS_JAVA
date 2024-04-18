@@ -96,6 +96,16 @@ public class Piece {
         this.value = value;
     }
 
+    public boolean isValidMovmentOfPiece(int column,int rows){
+        return true;
+    }
+    public boolean CollidesPiece(int column,int rows){
+        return false;
+
+    }
+
+
+
     public void paint(Graphics2D g2d) {
 
             g2d.drawImage(sprite, xPos, yPos, null);

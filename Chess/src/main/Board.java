@@ -39,6 +39,16 @@ public class Board extends JPanel {
     }
 
     public boolean isValidMove(Move move) {
+
+        if(!move.piece.isValidMovmentOfPiece(move.newColumn,move.newRow)){
+            return false;
+
+        }
+        if(move.piece.CollidesPiece(move.newColumn,move.newRow)){
+            return false;
+        }
+
+
         return !sameTeam(move.piece, move.capture);
     }
 
@@ -127,6 +137,22 @@ public void addPiece(){
                 g2d.fillRect(c * tileSize, r * tileSize, tileSize, tileSize);
             }
         }
+if(selectPiece!= null) {
+
+    for (int i = 0; i < 8; i++) {
+        for (int a = 0; a < 8; a++) {
+
+            if (isValidMove(new Move(this, selectPiece, a, i))) {
+                g2d.setColor(new Color(0x989055));
+                g2d.fillRect(a * tileSize, i * tileSize, tileSize, tileSize);
+            }
+
+
+        }
+    }
+}
+
+
         for (Piece piece : pieceList) {
             piece.paint(g2d);
         }

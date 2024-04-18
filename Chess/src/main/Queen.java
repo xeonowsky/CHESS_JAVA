@@ -17,4 +17,8 @@ public Queen(Board board,int column,int rows,boolean isWhite) {
 
         }
 
+        @Override
+        public boolean isValidMovmentOfPiece(int column, int rows) {
+                return this.column==column || this.rows==rows||Math.abs(this.column-column)==Math.abs(this.rows-rows);
+        }
 }

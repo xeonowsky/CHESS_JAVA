@@ -17,4 +17,9 @@ public class Pawn extends Piece{
 
 
     }
+
+    @Override
+    public boolean isValidMovmentOfPiece(int column, int rows) {
+        return super.isValidMovmentOfPiece(column, rows);
+    }
 }

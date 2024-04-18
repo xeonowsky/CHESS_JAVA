@@ -17,4 +17,9 @@ public class Bishop extends Piece{
 
 
     }
+
+    public boolean isValidMovmentOfPiece(int column, int rows) {
+        return Math.abs(column-this.column)==Math.abs(rows-this.rows);
+
+    }
 }
