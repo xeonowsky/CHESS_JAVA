@@ -19,4 +19,8 @@ public class King extends Piece{
 
     }
 
+    @Override
+    public boolean isValidMovmentOfPiece(int column, int rows) {
+        return Math.abs((column-this.column)*(rows-this.rows))==1||Math.abs(column-this.column)+Math.abs(rows-this.rows)==1;
+    }
 }

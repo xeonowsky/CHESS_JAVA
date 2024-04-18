@@ -22,9 +22,11 @@ public class Piece {
     Image sprite;
     BufferedImage sheet;
 
+    public boolean isFirstMove=true;
+
     {
         try {
-            sheet = ImageIO.read(ClassLoader.getSystemResource("piece.png"));
+            sheet = ImageIO.read(ClassLoader.getSystemResource("main/piece.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

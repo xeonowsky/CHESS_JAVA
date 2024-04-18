@@ -20,6 +20,17 @@ public class Pawn extends Piece{
 
     @Override
     public boolean isValidMovmentOfPiece(int column, int rows) {
-        return super.isValidMovmentOfPiece(column, rows);
+       int colorIndex =isWhite?1:-1;
+       if(this.column==column &&rows==this.rows-colorIndex && board.getPiece(column,rows)==null){
+           return true;
+       }
+        if(isFirstMove&&this.column==column &&rows==this.rows-colorIndex*2&& board.getPiece(column,rows)==null&& board.getPiece(column,rows+colorIndex)==null){
+            return true;
+        }
+        if(column==this.column-1&&rows==this.rows-colorIndex&&board.getPiece(column,rows)!=null) return true;
+
+            if(column==this.column+1&&rows==this.rows-colorIndex&&board.getPiece(column,rows)!=null) return true;
+
+    return false;
     }
 }

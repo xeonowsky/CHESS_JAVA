@@ -22,4 +22,43 @@ public class Bishop extends Piece{
         return Math.abs(column-this.column)==Math.abs(rows-this.rows);
 
     }
+
+
+    @Override
+    public boolean CollidesPiece(int column, int rows) {
+        if(this.column>column&&this.rows>rows){
+            for (int a=1;a<Math.abs(this.column-column);a++){
+                if(board.getPiece(this.getColumn()-1,this.rows-1)!=null){
+                    return true;
+                }
+            }
+        }
+
+        if(this.column<column&&this.rows>rows){
+            for (int a=1;a>Math.abs(this.column-column);a++){
+                if(board.getPiece(this.getColumn()+1,this.rows-1)!=null){
+                    return true;
+                }
+            }
+        }
+        if(this.column>column&&this.rows<rows){
+            for (int a=1;a<Math.abs(this.column-column);a++){
+                if(board.getPiece(this.getColumn()-1,this.rows+1)!=null){
+                    return true;
+                }
+            }
+        }
+        if(this.column<column&&this.rows<rows){
+            for (int a=1;a<Math.abs(this.column-column);a++){
+                if(board.getPiece(this.getColumn()-1,this.rows+1)!=null){
+                    return true;
+                }
+            }
+        }
+
+
+        return false;
+
+    }
+
 }

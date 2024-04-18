@@ -27,6 +27,7 @@ public class Board extends JPanel {
         move.piece.xPos = move.newColumn * tileSize;
         move.piece.yPos = move.newRow * tileSize;
         capture(move);
+        move.piece.isFirstMove=false;
 
     }
 
