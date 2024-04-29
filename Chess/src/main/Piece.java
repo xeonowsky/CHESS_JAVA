@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class Piece {
@@ -26,7 +27,7 @@ public class Piece {
 
     {
         try {
-            sheet = ImageIO.read(ClassLoader.getSystemResource("main/piece.png"));
+            sheet = ImageIO.read(new File("piece.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

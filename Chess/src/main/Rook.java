@@ -26,7 +26,6 @@ public class Rook extends Piece {
     @Override
     public boolean CollidesPiece(int column, int rows) {
 
-
         if (this.column > column) {
             for (int a = this.column - 1; a > column; a--) {
                 if (board.getPiece(a, this.rows) != null) {

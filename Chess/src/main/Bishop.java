@@ -28,29 +28,29 @@ public class Bishop extends Piece{
     public boolean CollidesPiece(int column, int rows) {
         if(this.column>column&&this.rows>rows){
             for (int a=1;a<Math.abs(this.column-column);a++){
-                if(board.getPiece(this.getColumn()-1,this.rows-1)!=null){
+                if(board.getPiece(this.getColumn()-a,this.rows-a)!=null){
                     return true;
                 }
             }
         }
 
         if(this.column<column&&this.rows>rows){
-            for (int a=1;a>Math.abs(this.column-column);a++){
-                if(board.getPiece(this.getColumn()+1,this.rows-1)!=null){
+            for (int a=1;a<Math.abs(this.column-column);a++){
+                if(board.getPiece(this.getColumn()+a,this.rows-a)!=null){
                     return true;
                 }
             }
         }
         if(this.column>column&&this.rows<rows){
             for (int a=1;a<Math.abs(this.column-column);a++){
-                if(board.getPiece(this.getColumn()-1,this.rows+1)!=null){
+                if(board.getPiece(this.getColumn()-a,this.rows+a)!=null){
                     return true;
                 }
             }
         }
         if(this.column<column&&this.rows<rows){
             for (int a=1;a<Math.abs(this.column-column);a++){
-                if(board.getPiece(this.getColumn()-1,this.rows+1)!=null){
+                if(board.getPiece(this.getColumn()+a,this.rows+a)!=null){
                     return true;
                 }
             }

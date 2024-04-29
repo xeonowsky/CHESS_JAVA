@@ -10,6 +10,9 @@ public class Board extends JPanel {
     ArrayList<Piece> pieceList = new ArrayList<>();
     public int tileSize = 85;
 
+
+    public int caputreInAir=-1;
+
     Input input = new Input(this);
 
     public Board() {
@@ -144,7 +147,7 @@ if(selectPiece!= null) {
         for (int a = 0; a < 8; a++) {
 
             if (isValidMove(new Move(this, selectPiece, a, i))) {
-                g2d.setColor(new Color(0x989055));
+                g2d.setColor(new Color(0x84B64EE3, true));
                 g2d.fillRect(a * tileSize, i * tileSize, tileSize, tileSize);
             }
 
