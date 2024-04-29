@@ -25,22 +25,138 @@ public class Board extends JPanel {
     public Piece selectPiece;
 
     public void makeMove(Move move) {
+
+
+        if(move.piece.name.equals("Pawn")){
+            movePawn(move);
+
+
+
+        }else {
+
+            move.piece.column = move.newColumn;
+            move.piece.rows = move.newRow;
+            move.piece.xPos = move.newColumn * tileSize;
+            move.piece.yPos = move.newRow * tileSize;
+            capture(move.capture);
+            move.piece.isFirstMove = false;
+        }
+    }
+
+    private void movePawn(Move move) {
+        int ColorIndex = move.piece.isWhite? 1 : -1;
+
+
+
+        if(getTileNumberr(move.newColumn,move.newRow)==caputreInAir){
+            move.capture=getPiece(move.newColumn,move.newRow+ColorIndex);
+        }
+
+        if(getTileNumberr(move.newColumn,move.newRow)==caputreInAir){
+            move.capture=getPiece(move.newColumn,move.newRow+ColorIndex);
+        }
+        if(Math.abs(move.piece.getRows()-move.newRow)==2){
+
+            caputreInAir=getTileNumberr(move.newColumn,move.newRow+ColorIndex);
+
+
+        }
+
+
+
+
+
+
+        else{
+                caputreInAir = -1;
+
+            }
+            ColorIndex = move.piece.isWhite ? 0 : 7;
+            if (move.newRow == ColorIndex) {
+                promotePawn(move);
+
+            }
+
+
+
+
+
+
         move.piece.column = move.newColumn;
         move.piece.rows = move.newRow;
         move.piece.xPos = move.newColumn * tileSize;
         move.piece.yPos = move.newRow * tileSize;
-        capture(move);
-        move.piece.isFirstMove=false;
-
-    }
-
-    public void capture(Move move) {
-
-
-            pieceList.remove(move.capture);
+        capture(move.capture);
+        move.piece.isFirstMove = false;
 
 
     }
+
+    private void promotePawn(Move move) {
+        String[] options = {"Knight", "Bishop", "Rook", "Queen"};
+
+
+        int choice = JOptionPane.showOptionDialog(
+                null,
+                "Chose a piece to promote your pawn",
+                "Pawn Promote",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                options,
+                options[3]);
+
+
+        if (choice >= 0 && choice < options.length) {
+            String selectedOption = options[choice];
+            System.out.println("Choosed: " + selectedOption);
+
+
+
+            if (choice == 0) {
+                {
+                    pieceList.add(new Knight(this, move.newColumn, move.newRow, move.piece.isWhite));
+
+                    capture(move.piece);
+
+                }
+            }
+
+        }
+        if (choice == 1) {
+
+                pieceList.add(new Bishop(this, move.newColumn, move.newRow, move.piece.isWhite));
+
+                capture(move.piece);
+
+            }
+            if (choice == 2) {
+                pieceList.add(new Rook(this, move.newColumn, move.newRow, move.piece.isWhite));
+                capture(move.piece);
+            }
+            if (choice == 3) {
+                pieceList.add(new Queen(this, move.newColumn, move.newRow, move.piece.isWhite));
+                capture(move.piece);
+            }
+
+
+
+    }
+
+
+
+    public void capture(Piece piece) {
+
+
+            pieceList.remove(piece);
+
+
+    }
+
+
+
+
+
 
     public boolean isValidMove(Move move) {
 
@@ -86,6 +202,15 @@ public class Board extends JPanel {
 
 
         }
+
+
+
+
+
+public int getTileNumberr(int column,int row){
+        return rows*row+columns*column;
+
+}
 
 
 
@@ -150,6 +275,7 @@ if(selectPiece!= null) {
                 g2d.setColor(new Color(0x84B64EE3, true));
                 g2d.fillRect(a * tileSize, i * tileSize, tileSize, tileSize);
             }
+
 
 
         }

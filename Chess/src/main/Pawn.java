@@ -29,8 +29,18 @@ public class Pawn extends Piece{
         }
         if(column==this.column-1&&rows==this.rows-colorIndex&&board.getPiece(column,rows)!=null) return true;
 
-            if(column==this.column+1&&rows==this.rows-colorIndex&&board.getPiece(column,rows)!=null) return true;
+        if(column==this.column+1&&rows==this.rows-colorIndex&&board.getPiece(column,rows)!=null) return true;
 
-    return false;
+
+//left
+        if(board.getTileNumberr(column,rows)==board.caputreInAir&&column== this.column-1&& rows== this.rows-colorIndex && board.getPiece(column,rows+colorIndex)!=null){
+            return true;
+        }
+
+//right
+        if(board.getTileNumberr(column,rows)==board.caputreInAir&&column== this.column+1&& rows== this.rows-colorIndex && board.getPiece(column,rows+colorIndex)!=null){
+            return true;
+        }
+        return false;
     }
 }

@@ -15,6 +15,10 @@ public class Main {
         Board board = new Board();
         frame.add(board);
 
+
+
+
+
         frame.setVisible(true);
     }
 }
