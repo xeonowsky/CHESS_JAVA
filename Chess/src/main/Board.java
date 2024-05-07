@@ -144,6 +144,16 @@ public class Board extends JPanel {
     }
 
 
+    Piece checkKing(boolean isWhite) {
+        for (Piece piece : pieceList) {
+            if (piece.name.equals("King") && piece.isWhite == isWhite) {
+                return piece;
+            }
+        }
+        return null;
+    }
+
+
 
     public void capture(Piece piece) {
 
@@ -202,6 +212,8 @@ public class Board extends JPanel {
 
 
         }
+
+
 
 
 
