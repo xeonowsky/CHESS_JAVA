@@ -2,6 +2,7 @@ package main;
 
 import javax.imageio.ImageIO;
 
+import javax.imageio.stream.FileImageInputStream;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -27,7 +28,7 @@ public class Piece {
 
     {
         try {
-            sheet = ImageIO.read(new File("piece.png"));
+            sheet = ImageIO.read((new File("piece.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }

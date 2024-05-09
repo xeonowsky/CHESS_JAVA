@@ -1,11 +1,16 @@
     package main;
 
 
+
     import java.awt.event.MouseAdapter;
     import java.awt.event.MouseEvent;
 
+
+
     public class Input extends MouseAdapter {
+        public int count=1;
         Board board;
+
         public Input(Board board){
             this.board=board;
         }
@@ -19,9 +24,12 @@
             int row=mouseEvent.getY()/board.tileSize;
             Piece PieceXY=board.getPiece(col,row);
             if(PieceXY!=null){
+
                 board.selectPiece=PieceXY;
 
+
             }
+
 
 
         }
@@ -49,6 +57,7 @@
                 if((board.isValidMove(move))){
 
                     board.makeMove(move);
+                    count++;
 
 
                 }
@@ -59,8 +68,11 @@
 
                 }
             }
+
+
             board.selectPiece=null;
             board.repaint();
+            System.out.println(count);
 
         }
 

@@ -9,11 +9,12 @@ public class Board extends JPanel {
     int columns = 8;
     ArrayList<Piece> pieceList = new ArrayList<>();
     public int tileSize = 85;
-
-
+    public int whiteTurn=1;
     public int caputreInAir=-1;
 
     Input input = new Input(this);
+
+    Check check = new Check(this);
 
     public Board() {
         this.setPreferredSize(new Dimension(columns * tileSize, rows * tileSize));
@@ -65,8 +66,6 @@ public class Board extends JPanel {
 
 
 
-
-
         else{
                 caputreInAir = -1;
 
@@ -91,6 +90,9 @@ public class Board extends JPanel {
 
 
     }
+
+
+
 
     private void promotePawn(Move move) {
         String[] options = {"Knight", "Bishop", "Rook", "Queen"};
@@ -168,6 +170,18 @@ public class Board extends JPanel {
 
 
 
+    public boolean isWhiteTurn() {
+
+        return (input.count % 2) == 1;
+    }
+
+    public boolean isBlackTurn() {
+
+        return (input.count % 2) == 0;
+    }
+
+
+
     public boolean isValidMove(Move move) {
 
         if(!move.piece.isValidMovmentOfPiece(move.newColumn,move.newRow)){
@@ -178,9 +192,24 @@ public class Board extends JPanel {
             return false;
         }
 
+        if(check.isCheck(move)) {
+            return false;
+        }
+
+        if (move.piece.isWhite() && !isWhiteTurn()) {
+            return false;
+        }
+
+        if (!move.piece.isWhite() && !isBlackTurn()) {
+            return false;
+        }
+
+
+
 
         return !sameTeam(move.piece, move.capture);
     }
+
 
 
     public boolean sameTeam(Piece piece1, Piece piece2) {
@@ -223,7 +252,14 @@ public int getTileNumberr(int column,int row){
         return rows*row+columns*column;
 
 }
-
+Piece findKing(boolean isWhite){
+        for(Piece piece:pieceList){
+            if(isWhite== piece.isWhite&&piece.name.equals("King")){
+                return piece;
+            }
+        }
+        return null;
+}
 
 
 public void addPiece(){
