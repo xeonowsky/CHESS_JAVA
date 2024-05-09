@@ -9,7 +9,7 @@ public class Board extends JPanel {
     int columns = 8;
     ArrayList<Piece> pieceList = new ArrayList<>();
     public int tileSize = 85;
-    public int whiteTurn=1;
+
     public int caputreInAir=-1;
 
     Input input = new Input(this);
@@ -146,14 +146,6 @@ public class Board extends JPanel {
     }
 
 
-    Piece checkKing(boolean isWhite) {
-        for (Piece piece : pieceList) {
-            if (piece.name.equals("King") && piece.isWhite == isWhite) {
-                return piece;
-            }
-        }
-        return null;
-    }
 
 
 
@@ -213,7 +205,6 @@ public class Board extends JPanel {
 
 
     public boolean sameTeam(Piece piece1, Piece piece2) {
-
 
 
 
