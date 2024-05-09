@@ -14,7 +14,7 @@ public class Board extends JPanel {
 
     Input input = new Input(this);
 
-    Check check = new Check(this);
+    public Check check = new Check(this);
 
     public Board() {
         this.setPreferredSize(new Dimension(columns * tileSize, rows * tileSize));
@@ -28,12 +28,14 @@ public class Board extends JPanel {
     public void makeMove(Move move) {
 
 
-        if(move.piece.name.equals("Pawn")){
+        if (move.piece.name.equals("Pawn")) {
             movePawn(move);
 
-
-
-        }else {
+        } else if (move.piece.name.equals("King")) {
+            moveKing(move);
+            move.piece.xPos = move.newColumn * tileSize;
+            move.piece.yPos = move.newRow * tileSize;
+        } else {
 
             move.piece.column = move.newColumn;
             move.piece.rows = move.newRow;
@@ -43,6 +45,8 @@ public class Board extends JPanel {
             move.piece.isFirstMove = false;
         }
     }
+
+
 
     private void movePawn(Move move) {
         int ColorIndex = move.piece.isWhite? 1 : -1;
@@ -201,6 +205,21 @@ public class Board extends JPanel {
 
         return !sameTeam(move.piece, move.capture);
     }
+
+
+private void moveKing(Move move){
+    if(Math.abs(move.piece.column-move.newColumn)==2){
+        Piece rook;
+        if(move.piece.column<move.newColumn){
+            rook=getPiece(7,move.piece.rows);
+            rook.column=5;
+        }else {
+            rook=getPiece(0,move.piece.rows);
+            rook.column=3;
+        }
+        rook.xPos=rook.column*tileSize;
+    }
+}
 
 
 

@@ -65,7 +65,7 @@ public class Check {
             Piece piece = board.getPiece(kingCol - (i * colVal), kingRow - (i * rowVal));
             if(piece!=null && piece!=board.selectPiece){
 
-                if (!board.sameTeam(piece, king) && (piece.name.equals("Bishop")) || piece.name.equals("Queen")) {
+                if (!board.sameTeam(piece, king) && (piece.name.equals("Bishop") || piece.name.equals("Queen"))) {
                     return true;
                 }
                 break;
@@ -123,12 +123,12 @@ public class Check {
 
     }
     private boolean checkKing(Piece a,Piece b){
-        return a!=null&&!board.sameTeam(a,b)&&a.name.equals("King")&&!(a.column==b.column&&a.rows==b.rows);
+        return a!=null&&!board.sameTeam(a,b)&&a.name.equals("King");
     }
 
 
     private boolean checkPawn(Piece a,Piece b,int col,int row){
-        return a!=null&&!board.sameTeam(a,b)&&a.name.equals("Pawn")&&!(a.column==col&&a.rows==row);
+        return a!=null&&!board.sameTeam(a,b)&&a.name.equals("Pawn");
     }
 
 public boolean hitPawn(int column, int row, Piece king,int kingCol,int kingRow){
