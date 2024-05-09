@@ -127,7 +127,7 @@ public class Check {
     }
 
 
-    private boolean checkPawn(Piece a,Piece b,int col,int row){
+    private boolean checkPawn(Piece a,Piece b,int column,int rows){
         return a!=null&&!board.sameTeam(a,b)&&a.name.equals("Pawn");
     }
 
@@ -142,5 +142,31 @@ public boolean hitPawn(int column, int row, Piece king,int kingCol,int kingRow){
 
 
 
+public boolean isGameOver(Piece king) {
+
+
+        for(Piece piece: board.pieceList){
+            if(board.sameTeam(piece,king)){
+                board.selectPiece=piece==king? king:null;
+                for(int row=0;row< board.rows;row++){
+                    for(int column=0;column<board.columns;column++){
+                       Move move=new Move(board,piece,column,row);
+                       if(board.isValidMove(move)){
+                           return false;
+                       }
+                        }
+                    }
+
+                }
+            }
+
+
+
+        return true;
+        }
 
 }
+
+
+
+

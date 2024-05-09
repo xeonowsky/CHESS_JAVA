@@ -3,14 +3,24 @@ package main;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class Board extends JPanel {
+
+
+
     int rows = 8;
     int columns = 8;
     ArrayList<Piece> pieceList = new ArrayList<>();
     public int tileSize = 85;
 
     public int caputreInAir=-1;
+    public boolean isGameOver = false;
+
+
+
+
+    private boolean isWhiteTurn = true;
 
     Input input = new Input(this);
 
@@ -25,6 +35,7 @@ public class Board extends JPanel {
 
     public Piece selectPiece;
 
+
     public void makeMove(Move move) {
 
 
@@ -37,14 +48,50 @@ public class Board extends JPanel {
             move.piece.yPos = move.newRow * tileSize;
         } else {
 
+
+
             move.piece.column = move.newColumn;
             move.piece.rows = move.newRow;
             move.piece.xPos = move.newColumn * tileSize;
             move.piece.yPos = move.newRow * tileSize;
             capture(move.capture);
             move.piece.isFirstMove = false;
+            isWhiteTurn=!isWhiteTurn;
+            updateGame();
+
         }
     }
+    public void updateGame(){
+        Piece king = findKing(isWhiteTurn);
+        if(check.isGameOver(king)) {
+            if (check.isCheck(new Move(this, king, king.column, king.rows))) {
+                System.out.println(isWhiteTurn ? "Black wins!" : "White wins!");
+                isGameOver = true;
+                closeGame();
+
+            } else {
+                System.out.println("Stalemate!");
+            }
+
+        }else if (insufficientMaterial(true) && insufficientMaterial(false)) {
+                    System.out.println("Insufficient material!");
+                    isGameOver = true;
+
+                    closeGame();
+                }
+
+
+        }
+
+
+
+    private void closeGame() {
+
+        String message = isWhiteTurn ? "Black wins!" : "White wins!";
+        JOptionPane.showMessageDialog(this, message, "Game Over", JOptionPane.INFORMATION_MESSAGE);
+        System.exit(0);
+    }
+
 
 
 
@@ -180,6 +227,12 @@ public class Board extends JPanel {
 
     public boolean isValidMove(Move move) {
 
+        if(isGameOver){
+
+            return false;
+        }
+
+
         if(!move.piece.isValidMovmentOfPiece(move.newColumn,move.newRow)){
             return false;
 
@@ -205,6 +258,18 @@ public class Board extends JPanel {
 
         return !sameTeam(move.piece, move.capture);
     }
+
+
+    private boolean insufficientMaterial(boolean isWhite){
+        ArrayList<String> names=pieceList.stream().filter(p->p.isWhite==isWhite).map(p-> p.name).collect(Collectors.toCollection(ArrayList::new));
+        if(names.contains("Pawn")||names.contains("Queen")||names.contains("Rook")){
+            return false;
+
+        }
+        return names.size()<3;
+
+    }
+
 
 
 private void moveKing(Move move){
@@ -273,37 +338,37 @@ Piece findKing(boolean isWhite){
 
 
 public void addPiece(){
-    pieceList.add(new Knight(this,1,0,false));
-    pieceList.add(new Knight(this,6,0,false));
-    pieceList.add(new Pawn(this,0,1,false));
-    pieceList.add(new Pawn(this,1,1,false));
-    pieceList.add(new Pawn(this,2,1,false));
-    pieceList.add(new Pawn(this,3,1,false));
-    pieceList.add(new Pawn(this,4,1,false));
-    pieceList.add(new Pawn(this,5,1,false));
-    pieceList.add(new Pawn(this,6,1,false));
-    pieceList.add(new Pawn(this,7,1,false));
-    pieceList.add(new Rook(this,0,0,false));
-    pieceList.add(new Rook(this,7,0,false));
-    pieceList.add(new Bishop(this,2,0,false));
-    pieceList.add(new Bishop(this,5,0,false));
-    pieceList.add(new Queen(this,3,0,false));
+//    pieceList.add(new Knight(this,1,0,false));
+//    pieceList.add(new Knight(this,6,0,false));
+//    pieceList.add(new Pawn(this,0,1,false));
+//    pieceList.add(new Pawn(this,1,1,false));
+//    pieceList.add(new Pawn(this,2,1,false));
+//    pieceList.add(new Pawn(this,3,1,false));
+//    pieceList.add(new Pawn(this,4,1,false));
+//    pieceList.add(new Pawn(this,5,1,false));
+//    pieceList.add(new Pawn(this,6,1,false));
+//    pieceList.add(new Pawn(this,7,1,false));
+//    pieceList.add(new Rook(this,0,0,false));
+//    pieceList.add(new Rook(this,7,0,false));
+//    pieceList.add(new Bishop(this,2,0,false));
+//    pieceList.add(new Bishop(this,5,0,false));
+//    pieceList.add(new Queen(this,3,0,false));
     pieceList.add(new King(this,4,0,false));
 
-    pieceList.add(new Knight(this,1,7,true));
-    pieceList.add(new Knight(this,6,7,true));
-    pieceList.add(new Pawn(this,0,6,true));
-    pieceList.add(new Pawn(this,1,6,true));
-    pieceList.add(new Pawn(this,2,6,true));
-    pieceList.add(new Pawn(this,3,6,true));
-    pieceList.add(new Pawn(this,4,6,true));
-    pieceList.add(new Pawn(this,5,6,true));
-    pieceList.add(new Pawn(this,6,6,true));
-    pieceList.add(new Pawn(this,7,6,true));
-    pieceList.add(new Rook(this,0,7,true));
-    pieceList.add(new Rook(this,7,7,true));
-    pieceList.add(new Bishop(this,2,7,true));
-    pieceList.add(new Bishop(this,5,7,true));
+//    pieceList.add(new Knight(this,1,7,true));
+//    pieceList.add(new Knight(this,6,7,true));
+//    pieceList.add(new Pawn(this,0,6,true));
+//    pieceList.add(new Pawn(this,1,6,true));
+//    pieceList.add(new Pawn(this,2,6,true));
+//    pieceList.add(new Pawn(this,3,6,true));
+//    pieceList.add(new Pawn(this,4,6,true));
+//    pieceList.add(new Pawn(this,5,6,true));
+//    pieceList.add(new Pawn(this,6,6,true));
+//    pieceList.add(new Pawn(this,7,6,true));
+//    pieceList.add(new Rook(this,0,7,true));
+//    pieceList.add(new Rook(this,7,7,true));
+//    pieceList.add(new Bishop(this,2,7,true));
+//    pieceList.add(new Bishop(this,5,7,true));
     pieceList.add(new Queen(this,3,7,true));
     pieceList.add(new King(this,4,7,true));
 
