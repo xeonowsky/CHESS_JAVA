@@ -305,19 +305,17 @@ private void moveKing(Move move){
 
 
 
-        public Piece getPiece(int column,int rows){
-        for (Piece piece:pieceList){
-            if(piece.column==column&&piece.rows==rows){
-                return piece;
+        public Piece getPiece(int column,int rows) {
+            for (Piece piece : pieceList) {
+                if (piece.column == column && piece.rows == rows) {
+                    return piece;
+                }
+
             }
-
-        }
-        return null;
+            return null;
 
 
         }
-
-
 
 
 
@@ -335,6 +333,7 @@ Piece findKing(boolean isWhite){
         }
         return null;
 }
+
 
 
 public void addPiece(){
